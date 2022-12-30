@@ -1,0 +1,10 @@
+.large-area {
+  width: 100%;
+  font-family: monospace !important;
+  max-height: 200px;
+}
+
+.large-area:focus {
+  outline: none;
+  border: none;
+}
