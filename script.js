@@ -17,13 +17,17 @@ axios.interceptors.response.use(updateEndTime, (e) => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  axios({
+  const config = {
     url: document.querySelector("[data-url").value,
     method: document.querySelector("[data-method").value,
     params: keyValuePairsToObject(queryParamsContainer),
     headers: keyValuePairsToObject(requestHeadersContainer),
-    data: JSON.parse(document.getElementById("json--post").value),
-  })
+  };
+  if (document.querySelector("[data-method").value === "POST") {
+    config.data =
+      JSON.parse(document.getElementById("json--post").value || "{}") || null;
+  }
+  axios(config)
     .catch((e) => e)
     .then((res) => {
       document
